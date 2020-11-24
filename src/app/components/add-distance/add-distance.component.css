@@ -1,0 +1,17 @@
+input, label {
+    display:block;
+}
+.inner {
+    position: absolute;
+  }
+  * {
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+  table, th, td {
+  padding: 3px; 
+  }

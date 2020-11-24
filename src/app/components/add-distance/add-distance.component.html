@@ -1,0 +1,54 @@
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</head>
+<body  div class="container .container-fluid" >
+<div  *ngIf="!submitted" style="height: 100%; padding: 10%;">
+  <div class="submit-form">
+      <div class="form-group" style="align-items: Center;" >
+        <label for="source">Source</label>
+        <input
+          required = true
+          type="text"
+          class="form-control"
+          id="source"
+          required
+          [(ngModel)]="distance.source"
+          name="source"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="dest" >Destination</label>
+        <input
+        required = true
+          class="form-control"
+          id="dest"
+          required
+          [(ngModel)]="distance.dest"
+          name="dest"
+        />
+      </div>
+
+      <button type="submit" style="background-color: '#e01e4c'; color: white; stroke: none;"(click)="getDistance()" class="btn">Display Distance</button>
+  </div>
+</div>
+<div  *ngIf="submitted" style="background-color: black; padding: 10%;">
+  <label class="display-5" id="dist_lbl"  style=" color:white; "> Distance in KM:</label>
+  <label class="display-4" id="dist_val" style="color: rgb(221, 167, 19);font-weight: 400;">{{distanceByKM}}</label>
+  <br>
+  <label  class="display-5" style="color: white; "> Most Popular Distance:</label>
+  <label class="display-4" style="color:  rgb(221, 167, 19); font-weight: 400;">{{popularCount}}</label>
+  <label style="color: white">{{popularSrc}} | {{popularDest}}</label>
+  <br>
+  <p style="font-size:150%; color: rgb(221, 167, 19);">List of popular results:</p>
+  <table style="size: 100%;">
+    <tr *ngFor="let distance of distances; let i = index">
+      <td> <label class="form-control"style="color: black; font-weight: 100;">{{ distance.source }}</label></td>
+      <td><label class="form-control"style="color: black; font-weight: 100;">{{distance.dest}}</label></td> 
+      <td><label class="form-control"style="color: black; font-weight: 100;">{{distance.counter}} Queries</label></td>
+    </tr>
+  </table>
+  <button style="float:right; background-color: 'rgb(221, 167, 19);'; color: white; stroke: none;"(click)="submitted = false" class="btn">New Search</button>
+</div>
+</body>
